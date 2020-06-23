@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Shape from "./Shape.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class Selector extends Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedShape: 'square',
+    };
+  };
 
-export default App;
+selectShape = (shapeName) => {
+  this.setState({
+    selectedShape: shapeName
+  });
+};
+
+
+  render () {
+    const { selectedShape } = this.state;
+
+
+    return (
+      <div className="container">
+        <div className="navbar">
+          <div>Selected: <span>{selectedShape}</span> </div>
+          <div>{this.state.selectedShape}</div>
+        </div>
+        <div className="shape-list">
+          <Shape Shape="square" selectShape={this.selectShape}/>
+          <Shape Shape="circle" selectShape={this.selectShape}/>
+          <Shape Shape="triangle" selectShape={this.selectShape}/>
+        
+        </div>
+        
+      </div>
+    );
+  };
+};
+
+export default Selector;
